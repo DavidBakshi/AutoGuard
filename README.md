@@ -8,7 +8,7 @@ to enable car owners to monitor vehicle location in real time, identify drivers 
 
 
 ## Project Diagram
-<img src="assets/diagram.png" width="1100" height="600">
+![Alt text](assets/diagram.png)
 
 ## Installation
 1. Clone the repository:
