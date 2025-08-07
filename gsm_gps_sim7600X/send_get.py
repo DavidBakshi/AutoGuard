@@ -5,6 +5,7 @@ import time
 ser = serial.Serial('/dev/ttyS0', 115200, timeout=1)  # Adjust the port if needed
 ser.flushInput()
 
+
 def send_at(command, back, timeout=1):
     """ Send AT command and check the response """
     ser.write((command + '\r\n').encode())
@@ -20,6 +21,7 @@ def send_at(command, back, timeout=1):
             print(f"ERROR: {rec_buff}")
             return False
     return False
+
 
 def http_get_request(url):
     """ Perform an HTTP GET request using AT commands """
@@ -57,14 +59,15 @@ def http_get_request(url):
 
 def main():
     # Example URL for testing
-    #url = "http://example.com"
-    url = "http://10.0.0.5:5000/benny"
+
+    url = "http://example.com"
     print("Starting HTTP GET request...")
     
     if http_get_request(url):
         print("HTTP GET request completed successfully.")
     else:
         print("HTTP GET request failed.")
+
 
 if __name__ == "__main__":
     main()

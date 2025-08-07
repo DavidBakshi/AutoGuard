@@ -3,6 +3,7 @@ import serial, time
 ser = serial.Serial('/dev/ttyS0', 115200, timeout=1)
 ser.flushInput()
 
+
 def at(cmd, timeout=0.5):
     ser.write((cmd+'\r\n').encode())
     time.sleep(timeout)
@@ -11,6 +12,7 @@ def at(cmd, timeout=0.5):
         resp += ser.read(ser.inWaiting()).decode()
         time.sleep(0.05)
     return resp.strip()
+
 
 def http_post(url, body):
     # Init
@@ -23,7 +25,7 @@ def http_post(url, body):
     ser.write(body.encode())
     time.sleep(0.5)
     # Fire POST
-    print(at('AT+HTTPACTION=1', 0.1))   # prints OK
+    print(at('AT+HTTPACTION=1', 0.1))   # should prints OK
     # Now wait for +HTTPACTION URC
     deadline = time.time() + 15
     urc = None
@@ -36,7 +38,7 @@ def http_post(url, body):
             urc = line
             break
     if not urc:
-        print("❌ no +HTTPACTION URC—timeout")
+        print("no +HTTPACTION URC—timeout")
         return False
     # Proceed
     print(at('AT+HTTPHEAD'))
@@ -44,10 +46,11 @@ def http_post(url, body):
     print(at('AT+HTTPTERM'))
     return True
 
+
 if __name__=='__main__':
-    url = "http://10.0.0.5:5000/location"
-    body = '{"latitude":32.309333,"longitude":34.855499}'
+    url = "ADD URL"
+    body = '{"latitude":X,"longitude":Y}'
     if http_post(url, body):
-        print("✅ POST succeeded")
+        print("POST succeeded")
     else:
-        print("❌ POST failed")
+        print("POST failed")
