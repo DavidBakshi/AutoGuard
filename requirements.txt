@@ -1,0 +1,9 @@
+numpy==1.25.2
+tensorflow==2.12.0
+tensorflow-hub
+flask
+matplotlib
+pandas
+scikit-learn
+pyAudioAnalysis
+RPi.GPIO
